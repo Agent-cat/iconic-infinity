@@ -1,5 +1,5 @@
 import React from 'react';
-import teamImg from '../assets/Tourism.jpg'; // You can replace this with your actual image path
+import teamImg from '../assets/impact.jpg'; // You can replace this with your actual image path
 
 const features = [
   {

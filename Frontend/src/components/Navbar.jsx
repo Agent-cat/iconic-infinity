@@ -86,7 +86,7 @@ const Navbar = ({ user, onLogout }) => {
       <div
         className={`fixed inset-0 bg-black/95 backdrop-blur-md transform transition-all duration-500 ease-in-out ${
           isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-        } flex flex-col`}
+        } flex flex-col min-h-screen`}
       >
         {/* Close Button */}
         <button

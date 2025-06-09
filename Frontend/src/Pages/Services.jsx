@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import ojas from "../assets/ojas.webp";
+import staymore from "../assets/staymore.png";
+import one from "../assets/one.jpg";
 const Services = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
@@ -12,7 +14,7 @@ const Services = () => {
       name: "Stay More",
       tagline: "Your Home Away From Home",
       description: "Stay More is our premium hospitality brand, offering luxurious accommodations and exceptional service. We focus on creating memorable experiences through personalized service and attention to detail.",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      image: staymore,
       services: [
         "Luxury Accommodations",
         "Fine Dining",
@@ -27,7 +29,7 @@ const Services = () => {
       name: "OJAS",
       tagline: "Innovation in Every Drop",
       description: "OJAS is our cutting-edge water technology division, dedicated to providing sustainable and efficient water solutions. We combine advanced technology with environmental consciousness to deliver pure, safe water.",
-      image: "https://images.unsplash.com/photo-1581093458791-9d15482442f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      image: ojas,
       services: [
         "Water Purification",
         "Smart Filtration",
@@ -42,7 +44,7 @@ const Services = () => {
       name: "ICONIC Tech",
       tagline: "Technology for Tomorrow",
       description: "ICONIC Tech is our technology division, focusing on innovative solutions that drive business growth. We specialize in developing cutting-edge software and digital solutions for modern enterprises.",
-      image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      image: one,
       services: [
         "Software Development",
         "Cloud Solutions",

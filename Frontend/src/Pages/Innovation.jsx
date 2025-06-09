@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import innovation from "../assets/inovation.jpg";
+import partner1 from "../assets/partner-1.jpg";
 
+import partner2 from "../assets/partner-2.jpg";
+
+import partner3 from "../assets/partner-3.jpg";
+
+import partner4 from "../assets/partner-4.jpg";
 const Innovation = () => {
   const [openFaq, setOpenFaq] = useState(null);
 
@@ -250,7 +257,7 @@ const Innovation = () => {
               <div className="absolute -top-6 -left-6 w-64 h-64 bg-blue-500/10 rounded-full"></div>
               <div className="relative z-10 rounded-lg overflow-hidden border border-blue-900/30">
                 <img
-                  src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  src={innovation}
                   alt="Innovation Team Meeting"
                   className="w-full"
                 />
@@ -455,17 +462,27 @@ const Innovation = () => {
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-            {[1, 2, 3, 4].map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-gray-900 to-black w-full h-32 rounded-lg flex items-center justify-center p-6 border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
-              >
-                <div className="text-blue-400 text-2xl font-bold">Partner {partner}</div>
-              </motion.div>
-            ))}
+          {[
+  partner1,
+  partner2,
+  partner3,
+  partner4
+].map((imageSrc, index) => (
+  <motion.div
+    key={index}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    className="w-full h-64 rounded-lg flex items-center justify-center  border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
+  >
+    <img
+      src={imageSrc}
+      alt={`Partner ${index + 1}`}
+      className="max-h-full max-w-full object-contain"
+    />
+  </motion.div>
+))}
+
           </div>
         </div>
       </section>
