@@ -218,6 +218,12 @@ const Portfolio = () => {
                     key={project.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ 
+                      rotateX: 15,
+                      rotateY: 15,
+                      scale: 1.02,
+                      transition: { duration: 0.2 }
+                    }}
                     transition={{
                       opacity: { duration: 0.3 },
                       transform: { duration: 0.5, ease: "easeInOut" }
@@ -228,7 +234,9 @@ const Portfolio = () => {
                       opacity: opacity,
                       transform: transform,
                       zIndex: zIndex,
-                      transformOrigin: 'center center' // Ensure rotation is around the center
+                      transformOrigin: 'center center',
+                      transformStyle: 'preserve-3d',
+                      perspective: '1000px'
                     }}
                   >
                     <div className="relative h-64 overflow-hidden">

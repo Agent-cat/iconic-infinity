@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import ojas from "../assets/ojas.webp";
 import staymore from "../assets/staymore.png";
 import one from "../assets/one.jpg";
+
 const Services = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
@@ -71,6 +72,54 @@ const Services = () => {
       setActiveTab("all");
     }
   }, [location.hash]);
+
+  const TiltImage = ({ src, alt }) => {
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const mouseXSpring = useSpring(x);
+    const mouseYSpring = useSpring(y);
+
+    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["180deg", "-180deg"]);
+    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-180deg", "180deg"]);
+
+    const handleMouseMove = (event) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+      const xPct = mouseX / width - 0.5;
+      const yPct = mouseY / height - 0.5;
+      x.set(xPct);
+      y.set(yPct);
+    };
+
+    const handleMouseLeave = () => {
+      x.set(0);
+      y.set(0);
+    };
+
+    return (
+      <motion.div
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX,
+          rotateY,
+          transformStyle: "preserve-3d",
+          perspective: "1000px"
+        }}
+        className="overflow-hidden rounded-xl border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
+      >
+        <img
+          src={src}
+          alt={alt}
+          className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
+        />
+      </motion.div>
+    );
+  };
 
   return (
     <main className="bg-black text-white">
@@ -143,13 +192,7 @@ const Services = () => {
                     }`}
                   >
                     <div className={`${index % 2 === 0 ? "order-1 lg:order-1" : "order-1 lg:order-2"}`}>
-                      <div className="overflow-hidden rounded-xl border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500">
-                        <img
-                          src={vertical.image}
-                          alt={vertical.name}
-                          className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700"
-                        />
-                      </div>
+                      <TiltImage src={vertical.image} alt={vertical.name} />
                     </div>
                     
                     <div className={`${index % 2 === 0 ? "order-2 lg:order-2" : "order-2 lg:order-1"}`}>
@@ -190,13 +233,7 @@ const Services = () => {
                       className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
                     >
                       <div>
-                        <div className="overflow-hidden rounded-xl border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500">
-                          <img
-                            src={vertical.image}
-                            alt={vertical.name}
-                            className="w-full h-[500px] object-cover hover:scale-105 transition-transform duration-700"
-                          />
-                        </div>
+                        <TiltImage src={vertical.image} alt={vertical.name} />
                       </div>
                       
                       <div>
