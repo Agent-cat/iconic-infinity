@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Navroutes from './routes/Navroutes';
-import Loader from './components/Loader';
-import ScrollToTop from './components/ScrollToTop'; // Import ScrollToTop
-import GoldenDustBackground from './components/GoldenDustBackground';
-import CursorFollower from './components/CursorFollower';
+import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
+import { useNavigate, useLocation } from "react-router-dom";
+import Navroutes from "./routes/Navroutes";
+import Loader from "./components/Loader";
+import ScrollToTop from "./components/ScrollToTop"; // Import ScrollToTop
+import GoldenDustBackground from "./components/GoldenDustBackground";
+import CursorFollower from "./components/CursorFollower";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -14,32 +14,30 @@ const App = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
   }, []);
 
-  // Add effect to handle route changes
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 4000); // Show loader for 3 seconds to allow the animation to complete
-
+    }, 4000);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
   const handleLogin = (userData) => {
     setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setUser(null);
-    navigate('/');
+    navigate("/");
   };
 
   return (

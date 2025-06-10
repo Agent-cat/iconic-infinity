@@ -1,5 +1,6 @@
 import React from 'react';
 import teamImg from '../assets/impact.jpg'; // You can replace this with your actual image path
+import { Link } from 'react-router-dom';
 
 const features = [
   {
@@ -53,7 +54,7 @@ const AboutSection = () => {
             ))}
           </div>
           <button className="mt-2 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-5 sm:px-7 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg shadow-lg transition-all duration-300 w-full sm:w-auto">
-            Learn More About Us
+              <Link to="/about-us"> Learn More About Us</Link>
           </button>
         </div>
         {/* Right Side */}

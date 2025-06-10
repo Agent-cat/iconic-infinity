@@ -285,27 +285,7 @@ const Aboutus = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-b from-blue-950 to-black">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-4xl font-bold mb-8 text-blue-400">Join Our Journey</h2>
-            <p className="text-xl mb-12 max-w-2xl mx-auto text-gray-300">
-              Be part of a team that's shaping the future through innovation and excellence.
-            </p>
-            <Link 
-              to="/careers" 
-              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-8 py-6 text-lg rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Explore Opportunities
-            </Link>
-          </motion.div>
-          </div>
-        </section>
+        
       </main>
   );
 };
