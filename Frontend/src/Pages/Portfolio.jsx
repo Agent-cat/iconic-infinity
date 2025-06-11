@@ -7,6 +7,7 @@ const Portfolio = () => {
   const [filter, setFilter] = useState("all");
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
+  const [itemsPerPage, setItemsPerPage] = useState(1); // Default to 1 for mobile
 
   const categories = [
     { id: "all", name: "All Projects", icon: FaBuilding },
@@ -83,26 +84,44 @@ const Portfolio = () => {
   }, [filter]);
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) { // lg breakpoint
+        setItemsPerPage(3);
+      } else if (window.innerWidth >= 640) { // sm breakpoint
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(1);
+      }
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     // Scroll to the current item when currentIndex changes
-    if (carouselRef.current) {
-      // Calculate scroll position to center the current item
-      const itemWidth = carouselRef.current.children[0].clientWidth + 32; // Item width + gap
-      const containerWidth = carouselRef.current.clientWidth;
-      const scrollLeft = currentIndex * itemWidth - (containerWidth / 2) + (itemWidth / 2);
+    if (carouselRef.current && filteredProjects.length > 0) {
+      const itemWidth = carouselRef.current.children[0].offsetWidth; // Use offsetWidth to include padding and border
+      const gap = 32; // space-x-8 is 32px
+      const totalItemWidth = itemWidth + gap;
+
+      // Calculate scroll position to align the current item to the start of the visible area
+      const scrollLeft = currentIndex * totalItemWidth;
 
       carouselRef.current.scrollTo({
         left: scrollLeft,
         behavior: "smooth",
       });
     }
-  }, [currentIndex, filteredProjects]); // Re-run effect when filteredProjects changes
+  }, [currentIndex, filteredProjects, itemsPerPage]); // Re-run effect when filteredProjects or itemsPerPage changes
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => Math.max(0, prevIndex - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => Math.min(filteredProjects.length - 1, prevIndex + 1));
+    setCurrentIndex((prevIndex) => Math.min(filteredProjects.length - itemsPerPage, prevIndex + 1));
   };
 
   return (
@@ -120,10 +139,10 @@ const Portfolio = () => {
           transition={{ duration: 0.8 }}
           className="relative z-10 text-center px-4 max-w-4xl mx-auto"
         >
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 tracking-tight">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-8 tracking-tight">
             Our <span className="text-blue-400">Portfolio</span>
           </h1>
-          <p className="text-xl md:text-2xl max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          <p className="text-base sm:text-xl md:text-2xl max-w-2xl mx-auto text-gray-300 leading-relaxed">
             Explore our showcase of successful projects across multiple
             verticals, demonstrating our commitment to excellence.
           </p>
@@ -135,7 +154,7 @@ const Portfolio = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filters */}
           <div className="overflow-x-auto mb-16">
-            <div className="flex flex-wrap items-center justify-center gap-4 min-w-max">
+            <div className="flex flex-wrap items-center justify-center gap-4"> {/* Removed min-w-max */}
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
@@ -159,12 +178,12 @@ const Portfolio = () => {
           </div>
 
           {/* Projects Carousel */}
-          <div className="relative w-full overflow-hidden px-4" style={{ perspective: '1000px' }}>
+          <div className="relative w-full overflow-hidden" style={{ perspective: '1000px' }}>
             <div 
               ref={carouselRef}
-              className="flex space-x-8 py-8 transition-transform duration-500 ease-in-out"
+              className="flex gap-x-8 py-8 transition-transform duration-500 ease-in-out"
               style={{
-                transform: `translateX(${-currentIndex * (100 / 3)}%)`
+                transform: `translateX(${-currentIndex * (100 / itemsPerPage)}%)` // Dynamic transform
               }}
             >
               {filteredProjects.map((project, index) => {
@@ -177,51 +196,63 @@ const Portfolio = () => {
                 let rotateY = 0;
                 let translateX = 0;
 
-                if (offset === 0) { // Center card
-                    zIndex = 30; // Highest z-index for the center card
-                    scale = 1; // Standard scale for emphasis
-                    rotateY = 0;
-                    translateX = 0;
+                if (itemsPerPage === 1) {
+                  if (offset === 0) {
+                    transform = "translateX(0) rotateY(0deg) scale(1)";
                     opacity = 1;
-                } else if (offset === -1) { // Left neighbor
-                    translateX = -400; // Significantly increased translation for stronger perspective
-                    rotateY = 70; // Significantly increased tilt
-                    scale = 0.2; // Much more decreased scale
-                    zIndex = 20;
-                    opacity = 0.3;
-                } else if (offset === 1) { // Right neighbor
-                    translateX = 400; // Significantly increased translation for stronger perspective
-                    rotateY = -70; // Significantly increased tilt
-                    scale = 0.2; // Much more decreased scale
-                    zIndex = 20;
-                    opacity = 0.3;
-                } else if (offset < -1) { // Far left
-                  const dist = Math.abs(offset);
-                  translateX = -600 - (dist - 2) * 200; // Further increased translation
-                  rotateY = 90 + (dist - 2) * 30; // Further increased tilt
-                  scale = Math.max(0.01, 0.1 - (dist - 2) * 0.03); // Further decreased scale
-                  zIndex = 10 - dist;
-                  opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
-                } else if (offset > 1) { // Far right
-                  const dist = Math.abs(offset);
-                  translateX = 600 + (dist - 2) * 200; // Further increased translation
-                  rotateY = -90 - (dist - 2) * 30; // Further increased tilt
-                  scale = Math.max(0.01, 0.1 - (dist - 2) * 0.03); // Further decreased scale
-                  zIndex = 10 - dist;
-                  opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
+                    zIndex = 10;
+                  } else {
+                    transform = "translateX(0) rotateY(0deg) scale(0)";
+                    opacity = 0;
+                    zIndex = 0;
+                  }
+                } else {
+                    if (offset === 0) {
+                        zIndex = 30;
+                        scale = 1;
+                        rotateY = 0;
+                        translateX = 0;
+                        opacity = 1;
+                    } else if (offset === -1) {
+                        translateX = -400;
+                        rotateY = 70;
+                        scale = 0.2;
+                        zIndex = 20;
+                        opacity = 0.3;
+                    } else if (offset === 1) {
+                        translateX = 400;
+                        rotateY = -70;
+                        scale = 0.2;
+                        zIndex = 20;
+                        opacity = 0.3;
+                    } else if (offset < -1) {
+                      const dist = Math.abs(offset);
+                      translateX = -600 - (dist - 2) * 200;
+                      rotateY = 90 + (dist - 2) * 30;
+                      scale = Math.max(0.01, 0.1 - (dist - 2) * 0.03);
+                      zIndex = 10 - dist;
+                      opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
+                    } else if (offset > 1) {
+                      const dist = Math.abs(offset);
+                      translateX = 600 + (dist - 2) * 200;
+                      rotateY = -90 - (dist - 2) * 30;
+                      scale = Math.max(0.01, 0.1 - (dist - 2) * 0.03);
+                      zIndex = 10 - dist;
+                      opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
+                    }
+                    transform = `translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`;
                 }
 
-                transform = `translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`;
-                
+
                 return (
                   <motion.div
                     key={project.id}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     whileHover={{ 
-                      rotateX: 15,
-                      rotateY: 15,
-                      scale: 1.02,
+                      rotateX: itemsPerPage > 1 ? 15 : 0,
+                      rotateY: itemsPerPage > 1 ? 15 : 0,
+                      scale: itemsPerPage > 1 ? 1.02 : 1,
                       transition: { duration: 0.2 }
                     }}
                     transition={{
@@ -230,13 +261,13 @@ const Portfolio = () => {
                     }}
                     className="group bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500 flex-shrink-0 shadow-xl hover:shadow-2xl hover:shadow-blue-500/20"
                     style={{
-                      width: 'calc(100% / 3 - 21.33px)',
+                      width: itemsPerPage === 1 ? '100%' : (itemsPerPage === 2 ? 'calc(50% - 16px)' : 'calc(100% / 3 - 21.33px)'), // Adjusted width to 100% for single view
                       opacity: opacity,
                       transform: transform,
                       zIndex: zIndex,
                       transformOrigin: 'center center',
-                      transformStyle: 'preserve-3d',
-                      perspective: '1000px'
+                      transformStyle: itemsPerPage > 1 ? 'preserve-3d' : 'flat',
+                      perspective: itemsPerPage > 1 ? '1000px' : 'none'
                     }}
                   >
                     <div className="relative h-64 overflow-hidden">
@@ -251,18 +282,18 @@ const Portfolio = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-3 text-blue-400">{project.title}</h3>
-                      <p className="text-gray-400 text-sm mb-4 flex items-center gap-2">
+                    <div className="p-6 sm:p-8">
+                      <h3 className="text-xl sm:text-2xl font-bold mb-2 text-blue-400">{project.title}</h3>
+                      <p className="text-gray-400 text-xs sm:text-sm mb-3 flex items-center gap-2">
                         <span className="inline-block w-2 h-2 bg-blue-500 rounded-full"></span>
                         Client: {project.client} | Year: {project.year}
                       </p>
-                      <p className="text-gray-300 mb-8 leading-relaxed">
+                      <p className="text-gray-300 mb-6 text-sm leading-relaxed">
                         {project.description}
                       </p>
                       <Link 
                         to={`/portfolio/${project.id}`}
-                        className="inline-block border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105"
+                        className="inline-block border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105"
                       >
                         View Details
                       </Link>
@@ -299,7 +330,7 @@ const Portfolio = () => {
                 </motion.button>
                 <motion.button
                   onClick={handleNext}
-                  disabled={currentIndex === filteredProjects.length - 1}
+                  disabled={currentIndex >= filteredProjects.length - itemsPerPage} // Adjust disabled logic
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="bg-black/50 text-white p-3 rounded-full disabled:opacity-50 pointer-events-auto backdrop-blur-sm hover:bg-black/70 transition-all duration-300"
@@ -352,7 +383,7 @@ const Portfolio = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {[
               {
                 title: "Green Valley Township",
@@ -386,20 +417,20 @@ const Portfolio = () => {
                     alt={study.title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8">
-                    <span className="text-white/80 mb-2">{study.category} | {study.year}</span>
-                    <h3 className="text-3xl font-bold text-white">{study.title}</h3>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-4 sm:p-8">
+                    <span className="text-white/80 mb-2 text-sm sm:text-base">{study.category} | {study.year}</span>
+                    <h3 className="text-xl sm:text-3xl font-bold text-white">{study.title}</h3>
                   </div>
                 </div>
-                <div className="p-8">
-                  <p className="text-gray-300 mb-8 text-lg leading-relaxed">
+                <div className="p-4 sm:p-8">
+                  <p className="text-gray-300 mb-6 text-sm sm:text-lg leading-relaxed">
                     {study.description}
                   </p>
-                  <div className="flex flex-wrap gap-3 mb-8">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 mb-6">
                     {study.tags.map((tag, idx) => (
                       <span 
                         key={idx}
-                        className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full text-sm font-medium"
+                        className="bg-blue-500/10 text-blue-400 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium"
                       >
                         {tag}
                       </span>
@@ -407,7 +438,7 @@ const Portfolio = () => {
                   </div>
                   <Link 
                     to={study.link}
-                    className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl font-medium transition-all duration-300 hover:scale-105"
+                    className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 text-sm sm:text-base"
                   >
                     Read Case Study
                   </Link>
@@ -431,11 +462,11 @@ const Portfolio = () => {
               Let's discuss how ICONIC Infinity Group can help bring your vision
               to life with our expertise across multiple verticals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link 
                   to="/contact-us"
-                  className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-10 py-5 rounded-xl text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/30"
+                  className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-base sm:text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/30"
                 >
                   Get in Touch
                 </Link>
@@ -443,7 +474,7 @@ const Portfolio = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link 
                   to="/services"
-                  className="inline-block border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 px-10 py-5 rounded-xl text-lg font-medium transition-all duration-300"
+                  className="inline-block border-2 border-blue-500 text-blue-400 hover:bg-blue-500/10 px-8 py-4 rounded-xl text-base sm:text-lg font-medium transition-all duration-300"
                 >
                   Explore Our Services
                 </Link>
