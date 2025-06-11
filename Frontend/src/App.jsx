@@ -41,7 +41,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden">
       <GoldenDustBackground />
       <ScrollToTop />
       <CursorFollower />
