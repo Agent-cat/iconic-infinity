@@ -488,27 +488,7 @@ const Innovation = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-b from-blue-950 to-black">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-bold mb-6 text-blue-400">Partner With Us on Innovation</h2>
-            <p className="text-gray-300 mb-8">
-              Are you interested in collaborating on innovative solutions or learning more
-              about our innovation capabilities? Get in touch with our team today.
-            </p>
-            <Link 
-              to="/contact?topic=innovation"
-              className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300"
-            >
-              Connect With Our R&D Team
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      
     </main>
   );
 };
