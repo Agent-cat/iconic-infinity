@@ -153,8 +153,8 @@ const Portfolio = () => {
       <section className="py-40 bg-gradient-to-b from-black to-blue-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filters */}
-          <div className="overflow-x-auto mb-16">
-            <div className="flex flex-wrap items-center justify-center gap-4"> {/* Removed min-w-max */}
+          <div className="mb-16">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
               {categories.map((category) => (
                 <motion.button
                   key={category.id}
@@ -164,14 +164,14 @@ const Portfolio = () => {
                   }}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-3 ${
+                  className={`px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
                     filter === category.id
                       ? "bg-blue-500 text-white shadow-lg shadow-blue-500/30"
                       : "bg-gray-900/50 text-gray-300 hover:bg-gray-800 hover:text-white border border-gray-800"
                   }`}
                 >
                   <category.icon className={`text-lg ${filter === category.id ? 'text-white' : 'text-blue-400'}`} />
-                  {category.name}
+                  <span className="truncate">{category.name}</span>
                 </motion.button>
               ))}
             </div>
@@ -210,40 +210,40 @@ const Portfolio = () => {
                     if (offset === 0) {
                         zIndex = 30;
                         scale = 1;
-                        rotateY = 0;
-                        translateX = 0;
-                        opacity = 1;
+                    rotateY = 0;
+                    translateX = 0;
+                    opacity = 1;
                     } else if (offset === -1) {
                         translateX = -400;
                         rotateY = 70;
                         scale = 0.2;
-                        zIndex = 20;
-                        opacity = 0.3;
+                    zIndex = 20;
+                    opacity = 0.3;
                     } else if (offset === 1) {
                         translateX = 400;
                         rotateY = -70;
                         scale = 0.2;
-                        zIndex = 20;
-                        opacity = 0.3;
+                    zIndex = 20;
+                    opacity = 0.3;
                     } else if (offset < -1) {
-                      const dist = Math.abs(offset);
+                  const dist = Math.abs(offset);
                       translateX = -600 - (dist - 2) * 200;
                       rotateY = 90 + (dist - 2) * 30;
                       scale = Math.max(0.01, 0.1 - (dist - 2) * 0.03);
-                      zIndex = 10 - dist;
-                      opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
+                  zIndex = 10 - dist;
+                  opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
                     } else if (offset > 1) {
-                      const dist = Math.abs(offset);
+                  const dist = Math.abs(offset);
                       translateX = 600 + (dist - 2) * 200;
                       rotateY = -90 - (dist - 2) * 30;
                       scale = Math.max(0.01, 0.1 - (dist - 2) * 0.03);
-                      zIndex = 10 - dist;
-                      opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
+                  zIndex = 10 - dist;
+                  opacity = Math.max(0.001, 0.05 - (dist - 2) * 0.01);
                     }
                     transform = `translateX(${translateX}px) rotateY(${rotateY}deg) scale(${scale})`;
                 }
 
-
+                
                 return (
                   <motion.div
                     key={project.id}
