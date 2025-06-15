@@ -210,7 +210,7 @@ const Hero = () => {
   return (
     <div className="w-full h-screen pt-28 md:pt-0 bg-black relative overflow-hidden flex flex-col lg:flex-row items-center justify-center">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between h-full px-2 sm:px-4 md:px-8">
-        <div className="z-10 w-full lg:w-1/2 flex flex-col justify-center items-start lg:items-start mb-8 lg:mb-0 px-2 sm:px-0">
+        <div className="z-10 w-full lg:w-1/2 flex flex-col justify-center items-start lg:items-start  lg:mb-0 px-2 sm:px-0">
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-[#2563eb] leading-tight mb-3 sm:mb-4">
             ICONIC Infinity Group
           </h1>
@@ -237,7 +237,7 @@ const Hero = () => {
         <div className="z-10 w-full lg:w-1/2 flex items-center justify-center h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px]">
           <div
             id="cube-canvas-container"
-            className="w-[220px] mb-11 md:mb-0 h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]"
+            className="w-[220px]  md:mb-0 h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]"
           ></div>
         </div>
         <div className="flex md:hidden flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
