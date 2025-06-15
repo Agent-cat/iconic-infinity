@@ -219,29 +219,21 @@ const Aboutus = () => {
           >
             Our Journey
           </motion.h2>
-            <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-700"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {milestones.map((milestone, index) => (
-              <motion.div
+                <motion.div
                   key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className={`relative flex items-center mb-16 ${
-                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                  }`}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
                 >
-                  <div className="w-1/2 px-8">
-                  <div className="bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500">
-                    <span className="inline-block px-4 py-1 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full text-sm font-semibold mb-3">
-                        {milestone.year}
-                      </span>
-                    <h3 className="text-xl font-bold mb-2 text-blue-400">{milestone.title}</h3>
-                    <p className="text-gray-400">{milestone.description}</p>
+                  <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center text-xl font-bold text-white transform group-hover:rotate-12 transition-transform duration-500">
+                    {milestone.year}
                   </div>
-                </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full"></div>
-              </motion.div>
+                  <h3 className="text-2xl font-bold mt-8 mb-4 text-blue-400">{milestone.title}</h3>
+                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{milestone.description}</p>
+                </motion.div>
               ))}
             </div>
           </div>
