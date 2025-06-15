@@ -31,7 +31,7 @@ const CursorFollower = () => {
 
   return (
     <div
-      className={`fixed pointer-events-none z-[9999] mix-blend-difference transition-opacity duration-200 ${
+      className={`fixed hidden md:flex pointer-events-none z-[9999] mix-blend-difference transition-opacity duration-200 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       style={{
