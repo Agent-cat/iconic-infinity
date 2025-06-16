@@ -20,7 +20,7 @@ const Navroutes = ({ onLogin, user }) => {
       <Route path="/services" element={<Services/>} />
       <Route path="/portfolio" element={<Portfolio/>} />
       <Route path="/innovation" element={<Innovation/>} />
-      <Route path="/contact-us" element={<Contact/>} />
+      <Route path="/careers" element={<Contact/>} />
     </Routes>
   )
 }
