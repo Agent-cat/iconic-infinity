@@ -31,8 +31,8 @@ export const Navconstants2 = [
         to: '/innovation',
     },
     {
-        title: 'Contact us',
-        to: '/contact-us',
+        title: 'careers',
+        to: '/careers',
     },
     
 ]

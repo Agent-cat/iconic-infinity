@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   useEffect(() => {
@@ -210,21 +211,46 @@ const Hero = () => {
   return (
     <div className="w-full h-screen pt-28 md:pt-0 bg-black relative overflow-hidden flex flex-col lg:flex-row items-center justify-center">
       <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between h-full px-2 sm:px-4 md:px-8">
-        <div className="z-10 w-full lg:w-1/2 flex flex-col justify-center items-start lg:items-start  lg:mb-0 px-2 sm:px-0">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-[#2563eb] leading-tight mb-3 sm:mb-4">
+        <div className="z-10 w-full lg:w-1/2 flex flex-col justify-center items-start lg:items-start lg:mb-0 px-2 sm:px-0">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-[#2563eb] leading-tight mb-3 sm:mb-4"
+          >
             ICONIC Infinity Group
-          </h1>
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+          </motion.h1>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4"
+          >
             Face of the Future
-          </h2>
-          <p className="text-base sm:text-xl md:text-2xl text-gray-300 mb-2">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-base sm:text-xl md:text-2xl text-gray-300 mb-2"
+          >
             Excellence, quality and innovation across multiple verticals
-          </p>
-          <p className="text-sm sm:text-lg md:text-xl text-gray-400 mb-6 sm:mb-8">
+          </motion.p>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-sm sm:text-lg md:text-xl text-gray-400 mb-6 sm:mb-8"
+          >
             A multi-domain enterprise delivering cutting-edge solutions in
             technology, design, sustainability, and construction.
-          </p>
-          <div className="md:flex hidden flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="md:flex hidden flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
+          >
             <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg flex items-center gap-2 shadow-lg transition-all duration-300 w-full sm:w-auto">
               <span>✦</span> <Link to="/services"> Explore Our Services</Link>
             </button>
@@ -232,23 +258,33 @@ const Hero = () => {
               <span>◎</span>
               <Link to="/about-us"> Learn More</Link>
             </button>
-          </div>
+          </motion.div>
         </div>
-        <div className="z-10 w-full lg:w-1/2 flex items-center justify-center h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px]">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="z-10 w-full lg:w-1/2 flex items-center justify-center h-[220px] sm:h-[320px] md:h-[400px] lg:h-[500px]"
+        >
           <div
             id="cube-canvas-container"
-            className="w-[220px]  md:mb-0 h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]"
+            className="w-[220px] md:mb-0 h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]"
           ></div>
-        </div>
-        <div className="flex md:hidden flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto">
-            <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg flex items-center gap-2 shadow-lg transition-all duration-300 w-full sm:w-auto">
-              <span>✦</span> <Link to="/services"> Explore Our Services</Link>
-            </button>
-            <button className="border-2 border-[#D4B678] hover:bg-[#D4B678]/10 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg flex items-center gap-2 shadow-lg transition-all duration-300 w-full sm:w-auto">
-              <span>◎</span>
-              <Link to="/about-us"> Learn More</Link>
-            </button>
-          </div>
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="flex md:hidden flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
+        >
+          <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg flex items-center gap-2 shadow-lg transition-all duration-300 w-full sm:w-auto">
+            <span>✦</span> <Link to="/services"> Explore Our Services</Link>
+          </button>
+          <button className="border-2 border-[#D4B678] hover:bg-[#D4B678]/10 text-white font-semibold px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg flex items-center gap-2 shadow-lg transition-all duration-300 w-full sm:w-auto">
+            <span>◎</span>
+            <Link to="/about-us"> Learn More</Link>
+          </button>
+        </motion.div>
       </div>
     </div>
   );

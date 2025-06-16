@@ -135,7 +135,7 @@ const Aboutus = () => {
             About <span className="text-blue-400">ICONIC</span>
             </h1>
           <p className="text-xl md:text-2xl max-w-2xl mx-auto text-gray-300">
-              Shaping the future through innovation, excellence, and unwavering commitment to quality.
+              Pioneering tomorrow's solutions today, where innovation meets excellence, and quality transforms into lasting impact.
             </p>
         </motion.div>
         </section>
@@ -219,22 +219,43 @@ const Aboutus = () => {
           >
             Our Journey
           </motion.h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
-                >
-                  <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center text-xl font-bold text-white transform group-hover:rotate-12 transition-transform duration-500">
-                    {milestone.year}
-                  </div>
-                  <h3 className="text-2xl font-bold mt-8 mb-4 text-blue-400">{milestone.title}</h3>
-                  <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{milestone.description}</p>
-                </motion.div>
-              ))}
+            <div className="relative">
+              {/* Vertical Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-700 hidden md:block"></div>
+              
+              {/* Timeline Items */}
+              <div className="space-y-12">
+                {milestones.map((milestone, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className={`relative flex flex-col md:flex-row items-center ${
+                      index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                    }`}
+                  >
+                    {/* Content */}
+                    <div className="w-full md:w-1/2 px-4 md:px-8">
+                      <div className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500">
+                        <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center text-xl font-bold text-white transform group-hover:rotate-12 transition-transform duration-500">
+                          {milestone.year}
+                        </div>
+                        <h3 className="text-2xl font-bold mt-8 mb-4 text-blue-400">{milestone.title}</h3>
+                        <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{milestone.description}</p>
+                      </div>
+                    </div>
+
+                    {/* Center Dot */}
+                    <div className="hidden md:flex items-center justify-center w-12 h-12 relative z-10">
+                      <div className="w-6 h-6 rounded-full bg-blue-500 ring-4 ring-blue-900/50"></div>
+                    </div>
+
+                    {/* Empty Space for alternating layout */}
+                    <div className="w-full md:w-1/2 px-4 md:px-8"></div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
