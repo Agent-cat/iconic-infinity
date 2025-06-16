@@ -5,6 +5,7 @@ import ParticlesBackground from '../components/ParticlesBackground';
 import InnovationSection from '../components/InnovationSection';
 import WhyChooseSection from '../components/WhyChooseSection';
 import LoadingScreen from '../components/LoadingScreen';
+import VerticalsSection from '../components/VerticalsSection';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,7 @@ const Home = () => {
           <ParticlesBackground/>
           <Hero />
           <AboutSection />
+          <VerticalsSection />
           <InnovationSection />
           <WhyChooseSection />
         </>
