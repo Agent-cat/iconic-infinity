@@ -82,9 +82,82 @@ const Navbar = ({ user, onLogout }) => {
         </div>
       </div>
 
-      {/* Full Screen Menu */}
+      {/* Horizontal Menu - Desktop Only */}
+      <div className={`hidden lg:block fixed top-0 left-0 w-full z-40 pointer-events-none transition-all duration-700 ease-out ${
+        isOpen ? "opacity-100" : "opacity-0"
+      }`}>
+        {/* Backdrop */}
+        <div
+          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-all duration-500 ${
+            isOpen ? "opacity-100 pointer-events-auto" : "opacity-0"
+          }`}
+          onClick={() => setIsOpen(false)}
+        />
+        
+        {/* Horizontal Menu Container */}
+        <div
+          className={`absolute top-20 left-1/2 transform -translate-x-1/2 transition-all duration-700 ease-out pointer-events-auto ${
+            isOpen 
+              ? "opacity-100 scale-100 translate-y-0" 
+              : "opacity-0 scale-95 -translate-y-4"
+          }`}
+        >
+          <div className="bg-black/95 backdrop-blur-md rounded-2xl shadow-2xl border border-[#D4B678]/20 overflow-hidden">
+            {/* Navigation Links */}
+            <div className="flex items-center px-6 py-4">
+              {[...Navconstants1, ...Navconstants2].map((link, index) => (
+                <div
+                  key={link.to}
+                  className={`transition-all duration-500 ease-out ${
+                    isOpen 
+                      ? "opacity-100 translate-x-0" 
+                      : "opacity-0 translate-x-8"
+                  }`}
+                  style={{ 
+                    transitionDelay: isOpen ? `${index * 100}ms` : '0ms'
+                  }}
+                >
+                  <NavLink
+                    to={link.to}
+                    onClick={() => setIsOpen(false)}
+                    className={({ isActive }) => `block px-6 py-3 mx-1 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                      isActive
+                        ? "bg-blue-500/20 text-blue-400 shadow-md border border-blue-500/30"
+                        : "text-gray-300 hover:bg-[#D4B678]/10 hover:text-blue-400"
+                    }`}
+                  >
+                    {link.title}
+                  </NavLink>
+                </div>
+              ))}
+              
+              {/* CTA Button */}
+              <div
+                className={`ml-4 transition-all duration-500 ease-out ${
+                  isOpen 
+                    ? "opacity-100 translate-x-0" 
+                    : "opacity-0 translate-x-8"
+                }`}
+                style={{ 
+                  transitionDelay: isOpen ? `${[...Navconstants1, ...Navconstants2].length * 100}ms` : '0ms'
+                }}
+              >
+                <NavLink
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                >
+                  Get Started
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Full Screen Menu - Mobile Only */}
       <div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-md transform transition-all duration-500 ease-in-out ${
+        className={`lg:hidden fixed inset-0 bg-black/95 backdrop-blur-md transform transition-all duration-500 ease-in-out ${
           isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
         } flex flex-col min-h-screen`}
       >
