@@ -123,10 +123,9 @@ const Hero = () => {
     let isAnimating = false;
     let animationStartTime = 0;
     let currentMoveIndex = 0;
-    const selfRotationSpeed = 0.008; // Speed of self-rotation
-    let currentRotation = 0; // Track current rotation
-
-    // Define a sequence of moves for a complete shuffle
+    const selfRotationSpeed = 0.008; 
+    let currentRotation = 0; 
+   
     const moveSequence = [
       // Front face moves
       { axis: "z", layer: 0, angle: Math.PI / 2, duration: 800 }, // Front layer
