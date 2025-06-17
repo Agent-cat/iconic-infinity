@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CursorFollower = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const updatePosition = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
     };
 
@@ -18,31 +18,35 @@ const CursorFollower = () => {
       setIsVisible(true);
     };
 
-    window.addEventListener('mousemove', updatePosition);
+    document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseleave', handleMouseLeave);
     document.addEventListener('mouseenter', handleMouseEnter);
 
+    // Hide default cursor
+    document.body.style.cursor = 'none';
+
     return () => {
-      window.removeEventListener('mousemove', updatePosition);
+      document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
+      document.body.style.cursor = 'auto';
     };
   }, []);
 
   return (
     <div
-      className={`fixed hidden md:flex pointer-events-none z-[9999] mix-blend-difference transition-opacity duration-200 ${
+      className={`fixed w-4 h-4 bg-yellow-400 rounded-full pointer-events-none z-50 transition-opacity duration-200 ease-out ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
       style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-        transform: 'translate(-50%, -50%)',
+        left: mousePosition.x - 8,
+        top: mousePosition.y - 8,
+        transform: 'translate3d(0, 0, 0)',
+        boxShadow: '0 0 15px rgba(255, 212, 0, 0.6)',
+        willChange: 'transform',
       }}
-    >
-      <div className="w-8 h-8 rounded-full bg-[#D4B678] blur-[2px]"></div>
-    </div>
+    />
   );
 };
 
-export default CursorFollower; 
+export default CursorFollower;
