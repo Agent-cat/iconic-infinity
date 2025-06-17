@@ -123,6 +123,8 @@ const Hero = () => {
     let isAnimating = false;
     let animationStartTime = 0;
     let currentMoveIndex = 0;
+    const selfRotationSpeed = 0.008; // Speed of self-rotation
+    let currentRotation = 0; // Track current rotation
 
     // Define a sequence of moves for a complete shuffle
     const moveSequence = [
@@ -150,9 +152,12 @@ const Hero = () => {
     function animate() {
       requestAnimationFrame(animate);
 
+      // Update continuous rotation
+      currentRotation += selfRotationSpeed;
+      
       // Handle continuous rotation of the entire cube
       mainGroup.rotation.x += (targetRotation.x - mainGroup.rotation.x) * 0.05;
-      mainGroup.rotation.y += (targetRotation.y - mainGroup.rotation.y) * 0.05;
+      mainGroup.rotation.y = currentRotation + (targetRotation.y - mainGroup.rotation.y) * 0.05;
 
       // Handle layer rotation animation
       if (isAnimating) {
