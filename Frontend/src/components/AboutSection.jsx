@@ -59,7 +59,7 @@ const AboutSection = () => {
         </div>
         {/* Right Side */}
         <div className="flex-1 flex justify-center w-full">
-          <div className="bg-[#181f2a]/80 rounded-2xl shadow-2xl p-0 md:p-6 w-full max-w-md relative overflow-hidden">
+          <div className="bg-[#181f2a]/80 rounded-2xl shadow-2xl p-0 md:p-6 w-full max-w-md relative ">
             <img src={teamImg} alt="Team" className="rounded-t-2xl w-full h-40 sm:h-56 object-cover object-center" />
             <div className="p-4 sm:p-6">
               <div className="font-extrabold text-white text-lg sm:text-2xl mb-4 sm:mb-6">Our Impact in Numbers</div>
