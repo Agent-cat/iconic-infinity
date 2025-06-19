@@ -8,6 +8,8 @@ import Services from '../Pages/Services'
 import Portfolio from '../Pages/Portfolio'
 import Innovation from '../Pages/Innovation'
 import Contact from '../Pages/Contact'
+import JobDetails from '../Pages/JobDetails'
+import AdminPanel from '../Pages/AdminPanel'
 
 
 const Navroutes = ({ onLogin, user }) => {
@@ -21,6 +23,8 @@ const Navroutes = ({ onLogin, user }) => {
       <Route path="/portfolio" element={<Portfolio/>} />
       <Route path="/innovation" element={<Innovation/>} />
       <Route path="/careers" element={<Contact/>} />
+      <Route path="/jobs/:id" element={<JobDetails />} />
+      <Route path="/admin" element={<AdminPanel />} />
     </Routes>
   )
 }

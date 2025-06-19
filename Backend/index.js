@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 const userRouter = require("./routes/user.routes");
+const jobRouter = require("./routes/job.routes");
+const jobApplicationRouter = require("./routes/jobApplication.routes");
 
 const { ConnectDB } = require("./Database/connection");
 const port = process.env.PORT || 5000;
@@ -20,6 +22,8 @@ app.use(express.json());
 ConnectDB();
 
 app.use("/api/users", userRouter);
+app.use("/api/jobs", jobRouter);
+app.use("/api", jobApplicationRouter);
 
 
 app.get("/", (req, res) => {

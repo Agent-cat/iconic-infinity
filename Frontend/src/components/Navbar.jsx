@@ -71,24 +71,81 @@ const Navbar = ({ user, onLogout }) => {
             ICONIC - <span className='text-[#D4B678]'>Infinity</span>
           </NavLink>
 
-          {/* Menu Button */}
-          <div className="flex items-center">
-            <button
-              onClick={toggleMenu}
-              className="inline-flex flex-col items-center justify-center p-2 rounded-md text-white hover:text-[#D4B678] transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#D4B678]"
-              aria-expanded={isOpen}
-              aria-label="Toggle menu"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <FaTimes className="block h-7 w-7" aria-hidden="true" />
-              ) : (
-                <>
-                  <FaEllipsisH className="block h-7 w-7" aria-hidden="true" />
-                  <span className="text-sm mt-1">Menu</span>
-                </>
-              )}
-            </button>
+          <div className="flex items-center ml-auto">
+            {/* Desktop Auth Buttons */}
+            {!user && (
+              <div className="hidden lg:flex items-center gap-4">
+                <NavLink
+                  to="/signin"
+                  className="group relative inline-flex items-center gap-2 px-5 py-2 text-base bg-gradient-to-r from-[#D4B678]/10 to-transparent hover:from-[#D4B678]/20 hover:to-transparent transition-all duration-300 rounded-lg border border-[#D4B678]/20 hover:border-[#D4B678]/40 hover:scale-105 text-white"
+                >
+                  <FaSignInAlt className="text-[#D4B678] group-hover:scale-110 transition-transform duration-300" />
+                  Sign in
+                </NavLink>
+                <NavLink
+                  to="/signup"
+                  className="group relative inline-flex items-center gap-2 px-5 py-2 text-base bg-gradient-to-r from-[#D4B678]/10 to-transparent hover:from-[#D4B678]/20 hover:to-transparent transition-all duration-300 rounded-lg border border-[#D4B678]/20 hover:border-[#D4B678]/40 hover:scale-105 text-white"
+                >
+                  <FaUserPlus className="text-[#D4B678] group-hover:scale-110 transition-transform duration-300" />
+                  Sign up
+                </NavLink>
+              </div>
+            )}
+            {/* Desktop User Profile Dropdown */}
+            {user && (
+              <div className="hidden lg:flex items-center gap-2 relative">
+                <button
+                  onClick={toggleUserMenu}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#D4B678]/10 to-transparent border border-[#D4B678]/30 hover:border-[#D4B678]/60 text-white font-medium focus:outline-none focus:ring-2 focus:ring-[#D4B678] transition-all duration-200"
+                >
+                  <FaUser className="text-[#D4B678] text-lg" />
+                  <span className="font-semibold text-base max-w-[100px] truncate">{user.name}</span>
+                  <svg className={`w-4 h-4 ml-1 transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-56 bg-black/95 border border-[#D4B678]/30 rounded-xl shadow-lg py-3 z-50 animate-fade-in">
+                    <div className="px-5 py-2 border-b border-[#D4B678]/10 text-white text-sm">
+                      <div className="font-semibold">{user.name}</div>
+                      {/* Optionally show email: <div className=\"text-xs text-gray-400\">{user.email}</div> */}
+                    </div>
+                    {user.role === 'admin' && (
+                      <NavLink
+                        to="/admin"
+                        className="block px-5 py-2 text-[#D4B678] hover:text-blue-400 transition-colors duration-200 text-sm"
+                        onClick={() => setShowUserMenu(false)}
+                      >
+                        Admin Panel
+                      </NavLink>
+                    )}
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-5 py-2 text-red-400 hover:text-red-600 transition-colors duration-200 text-sm"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+            {/* Menu Button (always visible on mobile, left of auth on desktop) */}
+            <div className="flex items-center lg:ml-4">
+              <button
+                onClick={toggleMenu}
+                className="inline-flex flex-col items-center justify-center p-2 rounded-md text-white hover:text-[#D4B678] transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#D4B678] lg:ml-0"
+                aria-expanded={isOpen}
+                aria-label="Toggle menu"
+              >
+                <span className="sr-only">Open main menu</span>
+                {isOpen ? (
+                  <FaTimes className="block h-7 w-7" aria-hidden="true" />
+                ) : (
+                  <>
+                    <FaEllipsisH className="block h-7 w-7" aria-hidden="true" />
+                    <span className="text-sm mt-1">Menu</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
