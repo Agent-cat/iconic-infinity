@@ -23,7 +23,6 @@ const Navbar = ({ user, onLogout }) => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    document.body.style.overflow = !isOpen ? 'hidden' : 'unset';
   };
 
   const toggleUserMenu = () => {
@@ -48,6 +47,18 @@ const Navbar = ({ user, onLogout }) => {
       label: "Sign up"
     }
   ];
+
+  // Ensure body scroll is locked/unlocked based on isOpen, and always cleaned up on unmount
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -102,7 +113,7 @@ const Navbar = ({ user, onLogout }) => {
               : "opacity-0 scale-95 -translate-y-4"
           }`}
         >
-          <div className="bg-black/95 backdrop-blur-md rounded-2xl shadow-2xl border border-[#D4B678]/20 overflow-hidden">
+          <div className="bg-black/95 backdrop-blur-md rounded-2xl shadow-2xl border border-[#D4B678]/20 ">
             {/* Navigation Links */}
             <div className="flex items-center px-6 py-4">
               {[...Navconstants1, ...Navconstants2].map((link, index) => (
