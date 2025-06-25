@@ -1,7 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 
-import { FaBuilding, FaHotel, FaLaptopCode, FaLeaf, FaTools, FaChartLine } from 'react-icons/fa';
 import Verticalcards from './Verticalcards';
 import { Link } from 'react-router-dom';
 const Verticals = [
@@ -62,9 +59,9 @@ const itemVariants = {
 
 const VerticalsSection = () => {
   return (
-    <section className="section-padding bg-gray-50 dark:bg-[#1E293B]">
-          <div className="container mx-auto container-padding">
-            <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+    <section className="py-16 md:py-24 z-50 bg-black dark:bg-[#1E293B]">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 transition-all duration-700 ease-out">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Our Featured <span className="text-[#0047AB]">Verticals</span>
               </h2>
@@ -81,7 +78,7 @@ const VerticalsSection = () => {
               ))}
             </div>
 
-            <div className="text-center mt-12 animate-on-scroll">
+            <div className="text-center mt-12 opacity-0 transition-all duration-700 ease-out">
               <button
                
                 className="border-[#0047AB] text-[#0047AB] hover:bg-[#0047AB]/10"
