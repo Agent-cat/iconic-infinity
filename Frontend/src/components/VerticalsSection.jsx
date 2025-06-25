@@ -1,43 +1,37 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBuilding, FaHotel, FaLaptopCode, FaLeaf, FaTools, FaChartLine } from 'react-icons/fa';
 
-const verticals = [
-  {
-    name: "Stay More",
-    description: "Luxury hospitality and real estate development",
-    icon: <FaHotel className="text-4xl" />,
-    color: "from-blue-500 to-blue-700",
-    delay: 0
-  },
-  {
-    name: "OJAS",
-    description: "Sustainable energy and environmental solutions",
-    icon: <FaLeaf className="text-4xl" />,
-    color: "from-green-500 to-green-700",
-    delay: 0.2
-  },
-  {
-    name: "ICONIC Tech",
-    description: "Cutting-edge technology and digital solutions",
-    icon: <FaLaptopCode className="text-4xl" />,
-    color: "from-purple-500 to-purple-700",
-    delay: 0.4
-  },
-  {
-    name: "ICONIC Construction",
-    description: "Innovative construction and infrastructure",
-    icon: <FaTools className="text-4xl" />,
-    color: "from-orange-500 to-orange-700",
-    delay: 0.6
-  },
-  {
-    name: "ICONIC Ventures",
-    description: "Strategic investments and business growth",
-    icon: <FaChartLine className="text-4xl" />,
-    color: "from-red-500 to-red-700",
-    delay: 0.8
-  }
+import { FaBuilding, FaHotel, FaLaptopCode, FaLeaf, FaTools, FaChartLine } from 'react-icons/fa';
+import Verticalcards from './Verticalcards';
+import { Link } from 'react-router-dom';
+const Verticals = [
+ {
+      title: "Stay More",
+      tagline: "Add Life",
+      description:
+        "Stay More enhances your living experience with premium interior design solutions and home furnishings that transform your space into a sanctuary of comfort and style.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+      link: "/services#staymore",
+    },
+    {
+      title: "OJAS",
+      tagline: "Quality you can trust",
+      description:
+        "OJAS delivers premium ready-made concrete solutions with uncompromising quality for construction projects of all scales, ensuring durability and reliability in every pour.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1603251579711-3e2c1c2b42b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+      link: "/services#ojas",
+    },
+    {
+      title: "Right Homes",
+      tagline: "You name it, we make it",
+      description:
+        "Right Homes turns your dream home into reality with customized construction solutions that prioritize quality craftsmanship, innovative design, and sustainable building practices.",
+      imageUrl:
+        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80",
+      link: "/services#righthomes",
+    },
 ];
 
 const containerVariants = {
@@ -68,45 +62,35 @@ const itemVariants = {
 
 const VerticalsSection = () => {
   return (
-    <section className="py-32 bg-gradient-to-b from-black to-blue-950 overflow-hidden">
-      <div className="container mx-auto px-4">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-16 text-blue-400"
-        >
-          Our Verticals
-        </motion.h2>
+    <section className="section-padding bg-gray-50 dark:bg-[#1E293B]">
+          <div className="container mx-auto container-padding">
+            <div className="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Our Featured <span className="text-[#0047AB]">Verticals</span>
+              </h2>
+              <p className="text-gray-700 dark:text-gray-300">
+                Discover our diverse portfolio of businesses, each delivering
+                excellence in their respective domains while maintaining our core
+                values of quality, innovation, and customer-centricity.
+              </p>
+            </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {verticals.map((vertical, index) => (
-            <motion.div
-              key={vertical.name}
-              custom={index % 2 === 0 ? 'left' : 'right'}
-              variants={itemVariants}
-              className="group relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black rounded-2xl transform transition-transform duration-500 group-hover:scale-105"></div>
-              <div className="relative p-8 rounded-2xl border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${vertical.color} flex items-center justify-center text-white mb-6 transform group-hover:rotate-12 transition-transform duration-500`}>
-                  {vertical.icon}
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-400">{vertical.name}</h3>
-                <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                  {vertical.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+            <div className="space-y-10">
+              {Verticals.map((vertical, index) => (
+                <Verticalcards key={index} {...vertical} index={index} />
+              ))}
+            </div>
+
+            <div className="text-center mt-12 animate-on-scroll">
+              <button
+               
+                className="border-[#0047AB] text-[#0047AB] hover:bg-[#0047AB]/10"
+              >
+                <Link to="/services">View All Verticals</Link>
+              </button>
+            </div>
+          </div>
+        </section>
   );
 };
 
