@@ -1,4 +1,6 @@
-
+import staymore from '../assets/staymore.png';
+import ojas from '../assets/ojas.webp';
+import righthomes from '../assets/wellness.jpeg';
 import Verticalcards from './Verticalcards';
 import { Link } from 'react-router-dom';
 const Verticals = [
@@ -7,8 +9,7 @@ const Verticals = [
       tagline: "Add Life",
       description:
         "Stay More enhances your living experience with premium interior design solutions and home furnishings that transform your space into a sanctuary of comfort and style.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+      imageUrl:staymore,
       link: "/services#staymore",
     },
     {
@@ -16,8 +17,7 @@ const Verticals = [
       tagline: "Quality you can trust",
       description:
         "OJAS delivers premium ready-made concrete solutions with uncompromising quality for construction projects of all scales, ensuring durability and reliability in every pour.",
-      imageUrl:
-        "https://images.unsplash.com/photo-1603251579711-3e2c1c2b42b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+      imageUrl:ojas,
       link: "/services#ojas",
     },
     {
@@ -26,8 +26,7 @@ const Verticals = [
       description:
         "Right Homes turns your dream home into reality with customized construction solutions that prioritize quality craftsmanship, innovative design, and sustainable building practices.",
       imageUrl:
-        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80",
-      link: "/services#righthomes",
+        righthomes,
     },
 ];
 
