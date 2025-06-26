@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import ojas from "../assets/ojas.webp";
+import all from "../assets/all.jpg"
 import staymore from "../assets/staymore.png";
 import one from "../assets/one.jpg";
-
+import vertex from "../assets/vertex.jpg"
+import yatra from "../assets/Yatra.jpg"
+import ohoo from "../assets/Ohoo_foods.jpg"
+import righthomes from "../assets/Right_home.jpg"
+import wow from "../assets/Wow.jpg"
 const Services = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
@@ -24,7 +29,7 @@ const Services = () => {
         "Luxury Living Concepts",
       ],
       image:
-        "https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+        staymore,
     },
     {
       id: "ojas",
@@ -40,7 +45,7 @@ const Services = () => {
         "Sustainable Concrete Options",
       ],
       image:
-        "https://images.unsplash.com/photo-1603251579711-3e2c1c2b42b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+        ojas,
     },
     {
       id: "avani",
@@ -56,7 +61,7 @@ const Services = () => {
         "Maintenance Products & Services",
       ],
       image:
-        "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80",
+        one,
     },
     {
       id: "yatra",
@@ -72,7 +77,7 @@ const Services = () => {
         "24/7 Emergency Support",
       ],
       image:
-        "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+        yatra,
     },
     {
       id: "ohoofoods",
@@ -88,7 +93,7 @@ const Services = () => {
         "Subscription Services",
       ],
       image:
-        "https://images.unsplash.com/photo-1564844536306-3bdb4a68a778?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+       ohoo,
     },
     {
       id: "righthomes",
@@ -104,7 +109,7 @@ const Services = () => {
         "Project Management",
       ],
       image:
-        "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1771&q=80",
+        righthomes,
     },
     {
       id: "hotels",
@@ -136,7 +141,7 @@ const Services = () => {
         "Water Purification Systems",
       ],
       image:
-        "https://images.unsplash.com/photo-1564419320461-6870880221ad?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80",
+        wow,
     },
     {
       id: "allinone",
@@ -152,7 +157,7 @@ const Services = () => {
         "Community Programs",
       ],
       image:
-        "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1693&q=80",
+       all,
     },
     {
       id: "empire",
@@ -184,7 +189,7 @@ const Services = () => {
         "Digital Transformation Services",
       ],
       image:
-        "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1769&q=80",
+        vertex,
     }
   ];
 
