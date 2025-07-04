@@ -55,7 +55,7 @@ const VerticalsSection = () => {
             <div className="text-center mt-12  transition-all duration-700 ease-out">
               <button
                
-                className="border-[#0047AB] text-[#0047AB] hover:bg-[#0047AB]/10"
+                className="border-[#0047AB] border-2 rounded-md px-3 py-3  text-yellow-500 hover:bg-[#0047AB]/10"
               >
                 <Link to="/services">View All Verticals</Link>
               </button>

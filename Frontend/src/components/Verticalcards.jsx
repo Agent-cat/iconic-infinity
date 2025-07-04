@@ -33,7 +33,7 @@ const Verticalcards = ({
       id={`vertical-card-${index}`}
       className={`flex flex-col ${
         isEven ? "md:flex-row" : "md:flex-row-reverse"
-      } w-full max-w-4xl mx-auto bg-[#22223b] rounded-3xl overflow-hidden shadow-2xl border border-[#23263a] mb-16 transition-all duration-500`}
+      } w-full max-w-4xl mx-auto bg-[#22223b] rounded-3xl overflow-hidden shadow-2xl z-50 border border-[#23263a] mb-16 transition-all duration-500`}
       style={{
         opacity: isVisible ? 1 : 1,
         transform: isVisible
