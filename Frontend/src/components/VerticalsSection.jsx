@@ -30,37 +30,12 @@ const Verticals = [
     },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const itemVariants = {
-  hidden: (direction) => ({
-    x: direction === 'left' ? -100 : 100,
-    opacity: 0
-  }),
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 15
-    }
-  }
-};
 
 const VerticalsSection = () => {
   return (
-    <section className="py-16 md:py-24 z-50 bg-black dark:bg-[#1E293B]">
+    <section className="py-16 md:py-24 z-50 bg-black ">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16 opacity-0 transition-all duration-700 ease-out">
+            <div className="text-center max-w-3xl mx-auto mb-16  transition-all duration-700 ease-out">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 Our Featured <span className="text-[#0047AB]">Verticals</span>
               </h2>
@@ -77,7 +52,7 @@ const VerticalsSection = () => {
               ))}
             </div>
 
-            <div className="text-center mt-12 opacity-0 transition-all duration-700 ease-out">
+            <div className="text-center mt-12  transition-all duration-700 ease-out">
               <button
                
                 className="border-[#0047AB] text-[#0047AB] hover:bg-[#0047AB]/10"
