@@ -12,8 +12,8 @@ const ParticlesBackground = () => {
       id="tsparticles"
       init={particlesInit}
       options={{
-        fullScreen: { enable: true, zIndex: 10 },
-        background: { color: 'transparent' },
+        fullScreen: { enable: true, zIndex: 1 },
+        background: { color: 'red' },
         particles: {
           number: { value: 100, density: { enable: true, value_area: 800 } },
           color: { value: ['#2563eb', '#D4B678', '#ffffff'] },

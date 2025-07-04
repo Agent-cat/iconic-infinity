@@ -272,7 +272,7 @@ const Hero = () => {
         >
           <div
             id="cube-canvas-container"
-            className="w-[220px] md:mb-0 h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[500px]"
+            className="w-[220px] md:mb-0 h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px] lg:w-[500px] lg:h-[400px]"
           ></div>
         </motion.div>
         <motion.div 
