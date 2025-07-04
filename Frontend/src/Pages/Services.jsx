@@ -283,7 +283,7 @@ const Services = () => {
       </section>
 
       {/* Services Tabs */}
-      <section className="py-32 bg-gradient-to-b from-black to-blue-950">
+      <section className=" bg-gradient-to-b from-black to-blue-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="w-full">
             <div className="overflow-x-auto mb-10">
