@@ -33,34 +33,38 @@ const Verticalcards = ({
       id={`vertical-card-${index}`}
       className={`flex flex-col ${
         isEven ? "md:flex-row" : "md:flex-row-reverse"
-      } bg-gradient-to-br from-[#18181b] via-[#1e293b] to-[#0f172a] dark:from-[#0f172a] dark:via-[#1e293b] dark:to-[#18181b] rounded-2xl overflow-hidden shadow-2xl border border-[#23263a] mb-12 transition-all duration-500`}
+      } w-full max-w-4xl mx-auto bg-[#22223b] rounded-3xl overflow-hidden shadow-2xl border border-[#23263a] mb-16 transition-all duration-500`}
       style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translateX(0)" : `translateX(${isEven ? -100 : 100}px)`,
+        opacity: isVisible ? 1 : 1,
+        transform: isVisible
+          ? "translateX(0)"
+          : `translateX(${isEven ? -100 : 100}px)`,
         transition: "opacity 1s, transform 1s",
         transitionDelay: `${index * 100}ms`,
       }}
     >
-      <div className="md:w-1/2 relative overflow-hidden group h-64 md:h-auto">
+      <div className="md:w-1/2 relative overflow-hidden group h-80 md:h-auto">
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-90 dark:brightness-75"
+          className="w-full z-50 h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-90 dark:brightness-75"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90"></div>
-        <div className="absolute bottom-0 left-0 p-6 text-white z-10">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100"></div>
+        <div className="absolute bottom-0 left-0 p-8 text-white z-10">
           <h3 className="text-2xl font-extrabold drop-shadow-lg">{title}</h3>
           <p className="text-[#FFD700] italic font-medium">{tagline}</p>
         </div>
       </div>
-      <div className="md:w-1/2 p-8 flex flex-col justify-between bg-gradient-to-t from-[#23263a]/80 to-transparent">
+      <div className="md:w-1/2 p-12 flex flex-col justify-between bg-[#2a2a40]">
         <div>
-          <h3 className="text-3xl font-bold mb-3 text-[#FFD700] drop-shadow-lg">{title}</h3>
+          <h3 className="text-3xl font-bold mb-3 text-[#FFD700] drop-shadow-lg">
+            {title}
+          </h3>
           <p className="text-gray-200 mb-8 leading-relaxed">{description}</p>
         </div>
         <Link
           to={link}
-          className="inline-block px-6 py-2 rounded-lg border-2 border-[#FFD700] text-[#FFD700] font-semibold hover:bg-[#FFD700]/20 hover:text-white transition-colors duration-300 shadow-md"
+          className="inline-block px-8 py-3 rounded-lg border-2 border-[#FFD700] text-[#FFD700] font-semibold hover:bg-[#FFD700]/20 hover:text-white transition-colors duration-300 shadow-md"
         >
           Learn More
         </Link>
