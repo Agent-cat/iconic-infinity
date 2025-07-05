@@ -68,7 +68,7 @@ const Navbar = ({ user, onLogout }) => {
         <div className="flex justify-between items-center h-20 sm:h-24">
           {/* Logo */}
           <NavLink to="/" className="flex items-center font-[fairplay] text-lg sm:text-2xl md:text-3xl font-bold text-white hover:text-[#D4B678] transition-colors duration-300">
-            ICONIC - <span className='text-[#D4B678]'>Infinity</span>
+            ICONIC - <span className='text-[#D4B678]'>INFINITY GROUP</span>
           </NavLink>
 
           <div className="flex items-center ml-auto">

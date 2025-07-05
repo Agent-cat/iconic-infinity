@@ -533,7 +533,7 @@ const Services = () => {
                 requirements.
               </p>
               <Link 
-                to="/contact-us"
+                to="/contact"
                 className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 transform hover:scale-105"
               >
                 Contact Us Today

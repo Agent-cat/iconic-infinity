@@ -465,7 +465,7 @@ const Portfolio = () => {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link 
-                  to="/contact-us"
+                  to="/contact"
                   className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-xl text-base sm:text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-blue-500/30"
                 >
                   Get in Touch
