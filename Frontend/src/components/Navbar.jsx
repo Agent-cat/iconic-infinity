@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import iconic from "../assets/iconic1.png"
 import { FaEllipsisH, FaTimes, FaUser, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { Navconstants1, Navconstants2 } from '../constants/Navconstant';
 
@@ -67,12 +68,16 @@ const Navbar = ({ user, onLogout }) => {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between items-center h-20 sm:h-24">
           {/* Logo */}
-          <NavLink to="/" className="flex items-center font-[fairplay] text-lg sm:text-2xl md:text-3xl font-bold text-white hover:text-[#D4B678] transition-colors duration-300">
-            ICONIC - <span className='text-[#D4B678]'>INFINITY GROUP</span>
+          <NavLink to="/" className="flex items-center">
+            <img
+              src={iconic}
+              alt="Iconic Infinity Logo"
+              className="h-28 w-auto sm:h-28 md:h-32 object-contain"
+            />
           </NavLink>
 
           <div className="flex items-center ml-auto">
-            {/* Desktop Auth Buttons */}
+            
             {!user && (
               <div className="hidden lg:flex items-center gap-4">
                 <NavLink
