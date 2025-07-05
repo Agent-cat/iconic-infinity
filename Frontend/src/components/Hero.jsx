@@ -149,6 +149,7 @@ const Hero = () => {
     ];
 
     function animate() {
+
       requestAnimationFrame(animate);
 
       // Update continuous rotation
@@ -222,7 +223,7 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl sm:text-5xl md:text-7xl font-extrabold text-[#2563eb] leading-tight mb-3 sm:mb-4"
           >
-            ICONIC Infinity Group
+            ICONIC INFINITY GROUP
           </motion.h1>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
