@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
 import { motion } from "framer-motion";
@@ -14,8 +14,9 @@ const Hero = () => {
     const scene = new THREE.Scene();
     scene.background = null;
 
+    // Adjust camera position to fit the cube within the canvas
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.set(0, 0, 6);
+    camera.position.set(0, 0, 8);
 
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
@@ -32,11 +33,12 @@ const Hero = () => {
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
     directionalLight.position.set(0, 0, 10);
     scene.add(directionalLight);
-
     // Create Rubik's-style cube (3x3x3)
     const mainGroup = new THREE.Group();
-    const cubeSize = 0.9;
-    const gap = 0.08;
+    // Reduce cube size and gap to fit better within the canvas
+    const cubeSize = 1.15;
+    const gap = 0.05;
+    
 
     // Create layer groups
     const layers = {
