@@ -141,7 +141,7 @@ const Aboutus = () => {
         </section>
 
       {/* Story Section with Animated Cards */}
-      <section className="py-32 px-4 bg-gradient-to-b from-black to-blue-950">
+      <section className=" px-4 bg-gradient-to-b from-black to-blue-950">
           <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[

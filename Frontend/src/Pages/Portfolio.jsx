@@ -150,7 +150,7 @@ const Portfolio = () => {
       </section>
 
       {/* Portfolio Filter Section */}
-      <section className="py-40 bg-gradient-to-b from-black to-blue-950">
+      <section className=" bg-gradient-to-b from-black to-blue-950">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filters */}
           <div className="mb-16">
