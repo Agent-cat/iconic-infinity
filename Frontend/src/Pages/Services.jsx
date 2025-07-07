@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import ojas from "../assets/ojas.webp";
-import all from "../assets/all.jpg"
+import all from "../assets/all.jpg";
 import staymore from "../assets/staymore.png";
 import one from "../assets/one.jpg";
-import vertex from "../assets/vertex.jpg"
-import yatra from "../assets/Yatra.jpg"
-import ohoo from "../assets/Ohoo_foods.jpg"
-import righthomes from "../assets/Right_home.jpg"
-import wow from "../assets/Wow.jpg"
+import vertex from "../assets/vertex.jpg";
+import yatra from "../assets/Yatra.jpg";
+import ohoo from "../assets/Ohoo_foods.jpg";
+import righthomes from "../assets/Right_home.jpg";
+import wow from "../assets/Wow.jpg";
 const Services = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("all");
@@ -20,16 +20,14 @@ const Services = () => {
       name: "Stay More",
       tagline: "Add Life",
       description:
-        "Stay More transforms living spaces into luxurious, comfortable environments through premium interior design solutions and home furnishings. Our expert team creates personalized designs that reflect your unique style and preferences, enhancing your quality of life and adding value to your property.",
+        "Welcome to Stay More, a movement born from the belief that menstrual wellness is not a luxury—it's a right. Designed, developed, and made with love in India, our sanitary pads are chemical-free, ultra-soft, and responsibly manufactured, keeping your comfort, health, and dignity at the core .",
       services: [
-        "Interior Design Consultations",
-        "Custom Furniture Solutions",
-        "Home Decor & Accessories",
-        "Space Optimization",
-        "Luxury Living Concepts",
+        "100% Skin-Friendly & Rash-Free",
+        "Eco-Aware Manufacturing",
+        "Trusted by Doctors",
+        "Voice for Menstrual Dignity",
       ],
-      image:
-        staymore,
+      image: staymore,
     },
     {
       id: "ojas",
@@ -44,8 +42,7 @@ const Services = () => {
         "On-Site Concrete Solutions",
         "Sustainable Concrete Options",
       ],
-      image:
-        ojas,
+      image: ojas,
     },
     {
       id: "avani",
@@ -60,8 +57,7 @@ const Services = () => {
         "Professional Installation",
         "Maintenance Products & Services",
       ],
-      image:
-        one,
+      image: one,
     },
     {
       id: "yatra",
@@ -76,8 +72,7 @@ const Services = () => {
         "Modernization & Upgrades",
         "24/7 Emergency Support",
       ],
-      image:
-        yatra,
+      image: yatra,
     },
     {
       id: "ohoofoods",
@@ -92,8 +87,7 @@ const Services = () => {
         "Bulk Supply for Restaurants",
         "Subscription Services",
       ],
-      image:
-       ohoo,
+      image: ohoo,
     },
     {
       id: "righthomes",
@@ -108,8 +102,7 @@ const Services = () => {
         "Sustainable Building Solutions",
         "Project Management",
       ],
-      image:
-        righthomes,
+      image: righthomes,
     },
     {
       id: "hotels",
@@ -140,8 +133,7 @@ const Services = () => {
         "Custom Branded Options",
         "Water Purification Systems",
       ],
-      image:
-        wow,
+      image: wow,
     },
     {
       id: "allinone",
@@ -156,8 +148,7 @@ const Services = () => {
         "Event Spaces",
         "Community Programs",
       ],
-      image:
-       all,
+      image: all,
     },
     {
       id: "empire",
@@ -188,9 +179,8 @@ const Services = () => {
         "Mobile Application Development",
         "Digital Transformation Services",
       ],
-      image:
-        vertex,
-    }
+      image: vertex,
+    },
   ];
 
   // Extract hash from URL to activate specific tab
@@ -216,8 +206,16 @@ const Services = () => {
     const mouseXSpring = useSpring(x);
     const mouseYSpring = useSpring(y);
 
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["180deg", "-180deg"]);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-180deg", "180deg"]);
+    const rotateX = useTransform(
+      mouseYSpring,
+      [-0.5, 0.5],
+      ["180deg", "-180deg"]
+    );
+    const rotateY = useTransform(
+      mouseXSpring,
+      [-0.5, 0.5],
+      ["-180deg", "180deg"]
+    );
 
     const handleMouseMove = (event) => {
       const rect = event.currentTarget.getBoundingClientRect();
@@ -244,7 +242,7 @@ const Services = () => {
           rotateX,
           rotateY,
           transformStyle: "preserve-3d",
-          perspective: "1000px"
+          perspective: "1000px",
         }}
         className="overflow-hidden rounded-xl border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
       >
@@ -266,7 +264,7 @@ const Services = () => {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent"></div>
           <div className="absolute inset-0 bg-[linear-gradient(45deg,_rgba(0,0,0,0.9)_0%,_rgba(0,0,0,0.4)_100%)]"></div>
         </div>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -315,71 +313,48 @@ const Services = () => {
             </div>
 
             <div className="space-y-32">
-              {activeTab === "all" ? (
-                verticals.map((vertical, index) => (
-                  <motion.div
-                    key={vertical.id}
-                    id={vertical.id}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${
-                      index !== 0 ? "pt-32 border-t border-blue-900/30" : ""
-                    }`}
-                  >
-                    <div className={`${index % 2 === 0 ? "order-1 lg:order-1" : "order-1 lg:order-2"}`}>
-                      <TiltImage src={vertical.image} alt={vertical.name} />
-                    </div>
-                    
-                    <div className={`${index % 2 === 0 ? "order-2 lg:order-2" : "order-2 lg:order-1"}`}>
-                      <h2 className="text-4xl font-bold mb-4 text-blue-400">{vertical.name}</h2>
-                      <p className="text-blue-300 font-medium italic mb-6">"{vertical.tagline}"</p>
-                      <p className="text-gray-400 mb-8">
-                        {vertical.description}
-                      </p>
-                      
-                      <h3 className="text-2xl font-semibold mb-6 text-blue-400">Our Offerings</h3>
-                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                        {vertical.services.map((service, idx) => (
-                          <li key={idx} className="flex items-center">
-                            <div className="w-2 h-2 rounded-full bg-blue-500 mr-3"></div>
-                            <span className="text-gray-300">{service}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <Link 
-                        to={`/contact?service=${vertical.id}`}
-                        className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
-                      >
-                        Inquire Now
-                      </Link>
-                    </div>
-                  </motion.div>
-                ))
-              ) : (
-                verticals
-                  .filter(vertical => vertical.id === activeTab)
-                  .map((vertical) => (
-                    <motion.div 
+              {activeTab === "all"
+                ? verticals.map((vertical, index) => (
+                    <motion.div
                       key={vertical.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                      id={vertical.id}
+                      initial={{ opacity: 0, y: 50 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${
+                        index !== 0 ? "pt-32 border-t border-blue-900/30" : ""
+                      }`}
                     >
-                      <div>
+                      <div
+                        className={`${
+                          index % 2 === 0
+                            ? "order-1 lg:order-1"
+                            : "order-1 lg:order-2"
+                        }`}
+                      >
                         <TiltImage src={vertical.image} alt={vertical.name} />
                       </div>
-                      
-                      <div>
-                        <h2 className="text-4xl font-bold mb-4 text-blue-400">{vertical.name}</h2>
-                        <p className="text-blue-300 font-medium italic mb-6">"{vertical.tagline}"</p>
+
+                      <div
+                        className={`${
+                          index % 2 === 0
+                            ? "order-2 lg:order-2"
+                            : "order-2 lg:order-1"
+                        }`}
+                      >
+                        <h2 className="text-4xl font-bold mb-4 text-blue-400">
+                          {vertical.name}
+                        </h2>
+                        <p className="text-blue-300 font-medium italic mb-6">
+                          "{vertical.tagline}"
+                        </p>
                         <p className="text-gray-400 mb-8">
                           {vertical.description}
                         </p>
-                        
-                        <h3 className="text-2xl font-semibold mb-6 text-blue-400">Our Offerings</h3>
+
+                        <h3 className="text-2xl font-semibold mb-6 text-blue-400">
+                          Our Offerings
+                        </h3>
                         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                           {vertical.services.map((service, idx) => (
                             <li key={idx} className="flex items-center">
@@ -388,25 +363,70 @@ const Services = () => {
                             </li>
                           ))}
                         </ul>
-                        
-                        <div className="space-x-4">
-                          <Link 
-                            to={`/contact?service=${vertical.id}`}
-                            className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
-                          >
-                            Inquire Now
-                          </Link>
-                          <Link 
-                            to="/portfolio"
-                            className="inline-block border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-6 py-3 rounded-lg font-medium transition-all duration-300"
-                          >
-                            View Projects
-                          </Link>
-                        </div>
+
+                        <Link
+                          to={`/contact?service=${vertical.id}`}
+                          className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                        >
+                          Inquire Now
+                        </Link>
                       </div>
                     </motion.div>
                   ))
-              )}
+                : verticals
+                    .filter((vertical) => vertical.id === activeTab)
+                    .map((vertical) => (
+                      <motion.div
+                        key={vertical.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                      >
+                        <div>
+                          <TiltImage src={vertical.image} alt={vertical.name} />
+                        </div>
+
+                        <div>
+                          <h2 className="text-4xl font-bold mb-4 text-blue-400">
+                            {vertical.name}
+                          </h2>
+                          <p className="text-blue-300 font-medium italic mb-6">
+                            "{vertical.tagline}"
+                          </p>
+                          <p className="text-gray-400 mb-8">
+                            {vertical.description}
+                          </p>
+
+                          <h3 className="text-2xl font-semibold mb-6 text-blue-400">
+                            Our Offerings
+                          </h3>
+                          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            {vertical.services.map((service, idx) => (
+                              <li key={idx} className="flex items-center">
+                                <div className="w-2 h-2 rounded-full bg-blue-500 mr-3"></div>
+                                <span className="text-gray-300">{service}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <div className="space-x-4">
+                            <Link
+                              to={`/contact?service=${vertical.id}`}
+                              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                            >
+                              Inquire Now
+                            </Link>
+                            <Link
+                              to="/portfolio"
+                              className="inline-block border border-blue-500 text-blue-400 hover:bg-blue-500/10 px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                            >
+                              View Projects
+                            </Link>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
             </div>
           </div>
         </div>
@@ -415,15 +435,17 @@ const Services = () => {
       {/* Advantages Section */}
       <section className="py-32 bg-gradient-to-b from-blue-950 to-black">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto text-center mb-20"
           >
-            <h2 className="text-4xl font-bold mb-6 text-blue-400">Why Choose ICONIC</h2>
+            <h2 className="text-4xl font-bold mb-6 text-blue-400">
+              Why Choose ICONIC
+            </h2>
             <p className="text-gray-400">
-              Across all our verticals, we offer distinct advantages that set us apart
-              and ensure an exceptional experience for our customers.
+              Across all our verticals, we offer distinct advantages that set us
+              apart and ensure an exceptional experience for our customers.
             </p>
           </motion.div>
 
@@ -431,7 +453,8 @@ const Services = () => {
             {[
               {
                 title: "End-to-End Support",
-                description: "We provide comprehensive support from initial consultation through project completion and beyond, ensuring a seamless experience at every step.",
+                description:
+                  "We provide comprehensive support from initial consultation through project completion and beyond, ensuring a seamless experience at every step.",
                 icon: (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -453,7 +476,8 @@ const Services = () => {
               },
               {
                 title: "Innovative Approach",
-                description: "Our dedicated Innovation Committee and R&D team ensure that we stay ahead of industry trends, bringing you the latest methodologies and technologies.",
+                description:
+                  "Our dedicated Innovation Committee and R&D team ensure that we stay ahead of industry trends, bringing you the latest methodologies and technologies.",
                 icon: (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -473,7 +497,8 @@ const Services = () => {
               },
               {
                 title: "Quality Assurance",
-                description: "We prioritize quality over profits, implementing rigorous quality control measures to ensure every product and service meets the highest standards.",
+                description:
+                  "We prioritize quality over profits, implementing rigorous quality control measures to ensure every product and service meets the highest standards.",
                 icon: (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -507,7 +532,9 @@ const Services = () => {
                 <div className="w-16 h-16 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors duration-500">
                   {advantage.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-400">{advantage.title}</h3>
+                <h3 className="text-2xl font-bold mb-4 text-blue-400">
+                  {advantage.title}
+                </h3>
                 <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
                   {advantage.description}
                 </p>
@@ -526,13 +553,15 @@ const Services = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl font-bold mb-6 text-blue-400">Ready to Get Started?</h2>
+              <h2 className="text-4xl font-bold mb-6 text-blue-400">
+                Ready to Get Started?
+              </h2>
               <p className="text-gray-400 mb-8">
-                Connect with our team to discuss your specific needs and discover how
-                ICONIC Infinity Group can deliver exceptional solutions tailored to your
-                requirements.
+                Connect with our team to discuss your specific needs and
+                discover how ICONIC Infinity Group can deliver exceptional
+                solutions tailored to your requirements.
               </p>
-              <Link 
+              <Link
                 to="/contact"
                 className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:from-blue-600 hover:to-blue-800 px-8 py-4 rounded-lg text-lg font-medium transition-all duration-300 transform hover:scale-105"
               >
@@ -549,29 +578,33 @@ const Services = () => {
               {[
                 {
                   title: "Consultation",
-                  description: "Schedule a free consultation to discuss your project requirements.",
+                  description:
+                    "Schedule a free consultation to discuss your project requirements.",
                 },
                 {
                   title: "Custom Solutions",
-                  description: "Get tailored solutions designed specifically for your unique needs.",
+                  description:
+                    "Get tailored solutions designed specifically for your unique needs.",
                 },
                 {
                   title: "Support",
-                  description: "Experience our industry-leading customer support and service.",
+                  description:
+                    "Experience our industry-leading customer support and service.",
                 },
                 {
                   title: "Satisfaction",
-                  description: "Join our growing list of satisfied customers across all verticals.",
+                  description:
+                    "Join our growing list of satisfied customers across all verticals.",
                 },
               ].map((item, index) => (
                 <div
                   key={index}
                   className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500"
                 >
-                  <h3 className="text-xl font-bold mb-3 text-blue-400">{item.title}</h3>
-                  <p className="text-gray-400">
-                    {item.description}
-                  </p>
+                  <h3 className="text-xl font-bold mb-3 text-blue-400">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-400">{item.description}</p>
                 </div>
               ))}
             </motion.div>
