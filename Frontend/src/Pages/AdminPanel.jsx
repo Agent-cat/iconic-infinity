@@ -255,52 +255,137 @@ const AdminPanel = () => {
       )}
       {/* Applications Modal */}
       {showApplications && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 animate-fade-in px-2">
-          <div className="bg-[#181f2a] rounded-xl shadow-lg border border-blue-900/30 p-4 sm:p-8 w-full max-w-xs sm:max-w-2xl relative animate-fade-in overflow-y-auto max-h-[90vh]">
-            <button
-              type="button"
-              onClick={() => setShowApplications(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-red-400 text-xl"
-            >
-              &times;
-            </button>
-            <h3 className="text-lg sm:text-xl font-bold text-blue-400 mb-4">Applications for {selectedJob?.title}</h3>
-            {applicationsLoading ? (
-              <div className="text-center py-8 text-gray-400">Loading applications...</div>
-            ) : applicationsError ? (
-              <div className="text-center py-8 text-red-400">{applicationsError}</div>
-            ) : applications.length === 0 ? (
-              <div className="text-center py-8 text-gray-400">No applications found.</div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-[600px] w-full text-xs sm:text-sm text-left text-gray-300">
-                  <thead>
-                    <tr className="bg-blue-900/40">
-                      <th className="px-2 sm:px-4 py-2">Name</th>
-                      <th className="px-2 sm:px-4 py-2">Email</th>
-                      <th className="px-2 sm:px-4 py-2">Phone</th>
-                      <th className="px-2 sm:px-4 py-2">Resume</th>
-                      <th className="px-2 sm:px-4 py-2">Cover Letter</th>
-                      <th className="px-2 sm:px-4 py-2">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {applications.map((app) => (
-                      <tr key={app._id} className="border-b border-blue-900/20 hover:bg-blue-900/10 transition-all duration-200">
-                        <td className="px-2 sm:px-4 py-2 font-semibold max-w-[100px] truncate">{app.name}</td>
-                        <td className="px-2 sm:px-4 py-2 max-w-[120px] truncate">{app.email}</td>
-                        <td className="px-2 sm:px-4 py-2">{app.phone}</td>
-                        <td className="px-2 sm:px-4 py-2">
-                          <a href={app.resumeLink} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Resume</a>
-                        </td>
-                        <td className="px-2 sm:px-4 py-2 max-w-[120px] truncate" title={app.coverLetter}>{app.coverLetter}</td>
-                        <td className="px-2 sm:px-4 py-2">{new Date(app.createdAt).toLocaleDateString()}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+        <div className="fixed inset-0  z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in p-4">
+          <div className="bg-[#181f2a] rounded-2xl shadow-2xl border border-[#D4B678]/20 p-6 sm:p-8 w-full max-w-4xl lg:max-w-6xl relative animate-fade-in overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-blue-900/30">
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4B678] to-blue-400">
+                  Applications for {selectedJob?.title}
+                </h3>
+                <p className="text-gray-400 text-sm mt-1">
+                  {applications.length} application{applications.length !== 1 ? 's' : ''} received
+                </p>
               </div>
-            )}
+              <button
+                type="button"
+                onClick={() => setShowApplications(false)}
+                className="text-gray-400 hover:text-red-400 text-2xl sm:text-3xl transition-colors duration-200 p-2 hover:bg-red-500/10 rounded-full"
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+              {applicationsLoading ? (
+                <div className="flex items-center justify-center py-16">
+                  <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#D4B678]"></div>
+                  <span className="ml-3 text-gray-400 text-lg">Loading applications...</span>
+                </div>
+              ) : applicationsError ? (
+                <div className="text-center py-16">
+                  <div className="text-red-400 text-xl mb-2">⚠️</div>
+                  <div className="text-red-400 text-lg">{applicationsError}</div>
+                </div>
+              ) : applications.length === 0 ? (
+                <div className="text-center py-16">
+                  <div className="text-gray-400 text-6xl mb-4">📄</div>
+                  <div className="text-gray-400 text-xl mb-2">No applications yet</div>
+                  <div className="text-gray-500 text-sm">Applications will appear here once candidates apply</div>
+                </div>
+              ) : (
+                <div className="grid gap-6">
+                  {applications.map((app, index) => (
+                    <div key={app._id} className="bg-[#1a2332]/80 rounded-xl border border-blue-900/30 p-6 hover:border-[#D4B678]/30 transition-all duration-300 hover:shadow-lg hover:shadow-[#D4B678]/10">
+                      {/* Application Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#D4B678] to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            {app.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <h4 className="text-xl font-bold text-white">{app.name}</h4>
+                            <p className="text-gray-400 text-sm">{app.email}</p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-sm text-gray-500 mb-1">Applied on</div>
+                          <div className="text-white font-medium">
+                            {new Date(app.createdAt).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Application Details */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Contact Information */}
+                        <div className="space-y-3">
+                          <h5 className="text-[#D4B678] font-semibold text-sm uppercase tracking-wide">Contact Information</h5>
+                          <div className="space-y-2">
+                            <div className="flex items-center space-x-3">
+                              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>
+                              <span className="text-gray-300">{app.email}</span>
+                            </div>
+                            <div className="flex items-center space-x-3">
+                              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                              </svg>
+                              <span className="text-gray-300">{app.phone}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Resume Link */}
+                        <div className="space-y-3">
+                          <h5 className="text-[#D4B678] font-semibold text-sm uppercase tracking-wide">Documents</h5>
+                          <div className="space-y-2">
+                            <a 
+                              href={app.resumeLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="inline-flex items-center space-x-2 bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 hover:text-blue-300 px-4 py-2 rounded-lg transition-all duration-200 border border-blue-600/30 hover:border-blue-600/50"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              <span>View Resume</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Cover Letter */}
+                      <div className="mt-6">
+                        <h5 className="text-[#D4B678] font-semibold text-sm uppercase tracking-wide mb-3">Cover Letter</h5>
+                        <div className="bg-[#1a2332]/60 rounded-lg p-4 border border-blue-900/20">
+                          <p className="text-gray-300 leading-relaxed whitespace-pre-wrap">
+                            {app.coverLetter}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Application Status */}
+                      <div className="mt-4 flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                          <span className="text-green-400 text-sm font-medium">New Application</span>
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          Application #{index + 1}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
@@ -319,6 +404,20 @@ const AdminPanel = () => {
         @keyframes fadeIn {
           from { opacity: 0; transform: translateY(30px); }
           to { opacity: 1; transform: none; }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: #1a2332;
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #D4B678;
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: #b8945a;
         }
       `}</style>
     </div>
