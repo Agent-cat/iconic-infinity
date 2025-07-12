@@ -180,10 +180,10 @@ const AdminPanel = () => {
               </div>
             )}
           </section>
-          {/* Future sections can be added here, each as a <section> */}
+          
         </div>
       </div>
-      {/* Job Form Modal */}
+      
       {showForm && (
         <div className="fixed inset-0  z-50 flex items-center justify-center bg-black/70 animate-fade-in px-2">
           <form
