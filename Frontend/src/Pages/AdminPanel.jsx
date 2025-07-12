@@ -185,7 +185,7 @@ const AdminPanel = () => {
       </div>
       {/* Job Form Modal */}
       {showForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 animate-fade-in px-2">
+        <div className="fixed inset-0  z-50 flex items-center justify-center bg-black/70 animate-fade-in px-2">
           <form
             onSubmit={handleSubmit}
             className="bg-[#181f2a] rounded-xl shadow-lg border border-blue-900/30 p-4 sm:p-8 w-full max-w-xs sm:max-w-md relative animate-fade-in"
@@ -255,7 +255,7 @@ const AdminPanel = () => {
       )}
       {/* Applications Modal */}
       {showApplications && (
-        <div className="fixed inset-0  z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in p-4">
+        <div className="fixed inset-0 cursor-default z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fade-in p-4">
           <div className="bg-[#181f2a] rounded-2xl shadow-2xl border border-[#D4B678]/20 p-6 sm:p-8 w-full max-w-4xl lg:max-w-6xl relative animate-fade-in overflow-hidden">
             {/* Header */}
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-blue-900/30">
