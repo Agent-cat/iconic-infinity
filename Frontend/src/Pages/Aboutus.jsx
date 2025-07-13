@@ -247,7 +247,7 @@ const Aboutus = () => {
           <div className="relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-700 hidden md:block"></div>
 
-            {/* Timeline Items */}
+           
             <div className="space-y-12">
               {milestones.map((milestone, index) => (
                 <motion.div
@@ -259,7 +259,7 @@ const Aboutus = () => {
                     index % 2 === 0 ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  {/* Content */}
+                 
                   <div className="w-full md:w-1/2 px-4 md:px-8">
                     <div className="group relative bg-gradient-to-br from-gray-900 to-black rounded-xl p-6 border border-blue-900/30 hover:border-blue-500/50 transition-all duration-500">
                       <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center text-xl font-bold text-white transform group-hover:rotate-12 transition-transform duration-500">
@@ -274,12 +274,12 @@ const Aboutus = () => {
                     </div>
                   </div>
 
-                  {/* Center Dot */}
+                  
                   <div className="hidden md:flex items-center justify-center w-12 h-12 relative z-10">
                     <div className="w-6 h-6 rounded-full bg-blue-500 ring-4 ring-blue-900/50"></div>
                   </div>
 
-                  {/* Empty Space for alternating layout */}
+                  
                   <div className="w-full md:w-1/2 px-4 md:px-8"></div>
                 </motion.div>
               ))}
@@ -288,7 +288,7 @@ const Aboutus = () => {
         </div>
       </section>
 
-      {/* Leadership Section with Modern Cards */}
+      
       <section className="py-32 bg-gradient-to-b from-black to-blue-950">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2
