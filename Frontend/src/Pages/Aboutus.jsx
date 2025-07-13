@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { motion } from "framer-motion";
 
 const Aboutus = () => {
@@ -133,7 +133,7 @@ const Aboutus = () => {
 
   return (
     <main className="bg-black text-white">
-      {/* Hero Section with Dynamic Background */}
+     
       <section className="relative min-h-[80vh] flex items-center justify-center ">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-blue-900/80 to-black/90"></div>
@@ -201,7 +201,7 @@ const Aboutus = () => {
         </div>
       </section>
 
-      {/* Values Section with Modern Grid */}
+     
       <section className="py-32 bg-gradient-to-b from-blue-950 to-black">
         <div className="max-w-7xl mx-auto px-4">
           <motion.h2
