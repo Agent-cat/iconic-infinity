@@ -11,6 +11,7 @@ const Verticals = [
       "Welcome to Stay More, a movement born from the belief that menstrual wellness is not a luxury—it's a right. Designed, developed, and made with love in India, our sanitary pads are chemical-free, ultra-soft, and responsibly manufactured, keeping your comfort, health, and dignity at the core ",
     imageUrl: staymore,
     link: "/services#staymore",
+    
   },
   {
     title: "OJAS",
